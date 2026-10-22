@@ -1,0 +1,9 @@
+assumption_key,assumption_value,note
+interchange_rate,0.003,Share of card_spend volume earned as interchange (blended assumption)
+deposit_net_interest_margin_annual,0.015,Annual margin earned on average deposit balances (assumption)
+loan_cost_of_funds_annual,0.045,Annual funding cost on loan principal outstanding (assumption)
+origination_fee_rate,0.03,Fee charged on loan principal at issue (assumption; LendingClub charges 3-6%)
+loss_given_default,0.9,Share of unpaid balance lost on defaulted loans (assumption)
+kyc_cost_per_check,2.5,Cost of one KYC verification in EUR (assumption)
+servicing_cost_per_active_month,0.4,Account servicing cost per active customer-month in EUR (assumption)
+as_of_date_serial,20260930.0,"Data extract date, YYYYMMDD"

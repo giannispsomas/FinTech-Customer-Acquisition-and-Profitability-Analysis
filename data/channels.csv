@@ -1,0 +1,6 @@
+channel_id,channel_name,has_spend
+1,paid_search,1
+2,paid_social,1
+3,affiliate,1
+4,referral,1
+5,organic,0
