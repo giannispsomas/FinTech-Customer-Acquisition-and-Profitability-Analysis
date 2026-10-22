@@ -78,7 +78,11 @@ This document lists the definitions the analysis relies on and what it cannot co
 
 **Other**
 - 378 customers have no segment and are labelled unknown.
-- Retention beyond 12 months and deposit margin are not modeled.
+- Deposit margin is not modeled, because the data has no balances.
+
+**Left out on purpose**
+- **Retention by channel and RFM segmentation** were in the first plan and are not part of this project. The retail project already covers cohort retention, churn and RFM with K-Means, and this project answers a different question: which channels bring profitable customers. RFM would also need clustering in Python, which is out of scope here.
+- A quick check on the reporting views suggests that retention differs by channel: about 9% of paid social customers and 11% of affiliate customers still have a transaction in month 12, against 44% for referral. This is not analysed further here, and it would be the first thing to add.
 
 ## 5. What the analysis does not claim
 
