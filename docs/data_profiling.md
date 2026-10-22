@@ -6,9 +6,9 @@
 - **Size:** 10 tables, 136,098 rows, October 2024 to September 2026. The extract date is 2026-09-30.
 - **Tool:** SQL Server. The raw tables stay in schema `dbo` and are never changed.
 - **Purpose:** find what is wrong with the raw tables before cleaning them, and decide what to do about each problem.
-- **Scripts:** [sql/profiling](sql/profiling/), one file per table plus the cross-table checks.
+- **Script:** [sql/01_data_profiling.sql](../sql/01_data_profiling.sql), one section per table plus the cross-table checks.
 
-The generator plants data quality problems on purpose, so the raw layer is messy. I profiled all 10 tables before trusting any of them.
+The raw layer contains data quality problems, so I profiled all 10 tables before trusting any of them.
 
 ## Method
 
@@ -148,8 +148,6 @@ All 10 tables loaded with the expected number of rows.
 | T-16 | loans, repayments | 29 loans with no installments yet | Flag |
 | T-17 | cross-table | 2,353 customers with an account and no deposit | Flag |
 | T-18 | transactions | 41 amounts above 10,000, up to 379,178 | Flag |
-
-The reasoning for each row is in the Triage table in the project log.
 
 ## Key takeaways
 

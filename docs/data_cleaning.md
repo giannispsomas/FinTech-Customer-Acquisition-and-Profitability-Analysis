@@ -4,9 +4,9 @@
 
 - **Source:** the raw tables in schema `dbo` (see [data_profiling.md](data_profiling.md)).
 - **Output:** the cleaned tables in schema `clean`, one per raw table.
-- **Tool:** SQL Server, one script per table in [sql/clean](sql/clean/).
+- **Tool:** SQL Server, one script: [sql/02_data_cleaning.sql](../sql/02_data_cleaning.sql), one step per table.
 - **Rules:** every rule comes from a triage decision (T-01 to T-18). The raw tables are only read, never changed.
-- **Re-running:** each script drops and rebuilds its table, so it is safe to run again. Run them in number order, because `09_clean_transactions.sql` reads `clean.accounts`.
+- **Re-running:** the script drops and rebuilds every clean table first, so it is safe to run again. Run it once, top to bottom, because step 09 (transactions) reads `clean.accounts` from step 03.
 - **Pattern:** a fix keeps the original value beside the new one (`amount_raw`, `acquisition_channel_raw`). A flag is a 0/1 column. Rows are only left out when they are duplicates.
 
 ## Row count log
@@ -31,7 +31,7 @@ Only `customers` loses rows. Every other table keeps all of its rows.
 
 ### customers
 
-The script is a chain of four steps, each one a CTE.
+Step 10 is a chain of four CTEs.
 
 - **Exact copies (T-01):** `select distinct` keeps each identical row once. 60 rows go.
 - **Re-signups (T-02, T-07):** I number each person's rows by `lower(email)`, earliest signup first, and keep number 1. The 40 uppercase re-signups go. They carry nothing the original record lacks, and they have no touchpoints or accounts. The result is 10,000 customers, and each of them has a touchpoint.
@@ -61,15 +61,15 @@ Each is a copy with one flag column:
 - The values are rounded to 4 decimals and stored as `decimal(10,4)`.
 - The extract date, stored as `20260930`, becomes the date 2026-09-30 in its own column.
 - A `unit` column says whether a row is a rate, an amount in euros or a date.
-- I compared the 8 rows with the values in the project log.
+- I compared the 8 rows with the values defined for the project.
 
 ### channels, campaigns, accounts, repayments
 
-Straight copies. The scripts only check that the row counts match.
+Straight copies. The steps only check that the row counts match.
 
 ## Validation
 
-Each script ends with checks. All of them passed.
+Each step ends with checks. All of them passed.
 
 | Check | Result |
 |---|---|
@@ -79,13 +79,13 @@ Each script ends with checks. All of them passed.
 | Flag counts | 323 sign flips, 1,069 missing categories, 41 large amounts, 389 early transactions, 2,586 signup-day touches, 122 zero-impression rows, 237 KYC dates, 378 unknown segments |
 | transactions: negatives left | 0 |
 | loans: seasoned and not yet | 1,587 and 703 |
-| assumptions | the 8 values match the project log |
+| assumptions | the 8 values match the values defined for the project |
 
 ## Lessons
 
 1. **A join can repeat rows.** Joining `customers` to `touchpoints` without collapsing the repeated ids would have turned 21,019 touches into more. A row count check after the join catches it.
 2. **Two ways to remove duplicates.** `select distinct` removes rows that are identical in every column. The re-signups were not identical (new id, later date, uppercase email), so they needed `row_number()` over the lowercase email.
-3. **SQL Server reads a whole batch before it runs it.** When I re-ran a script that adds a column to a table that already existed, it failed with "Invalid column name" before dropping the old table. Putting `go` after the `drop table` makes it a separate batch and fixes it.
+3. **SQL Server reads a whole batch before it runs it.** When I re-ran a step that adds a column to a table that already existed, it failed with "Invalid column name" before dropping the old table. Putting `go` after the `drop table` makes it a separate batch and fixes it.
 4. **`tch.*` and not `*`.** After a join, a bare `*` brings in the other table's columns too, and `select into` fails on the duplicate `customer_id`.
 5. **Keep the original.** Every fixed column has its raw value beside it, so any decision can be checked or undone.
 6. **Fewer columns can be better.** I dropped the `segment_missing` flag because the `unknown` label already says the same thing. Flags are only needed where the value stays unchanged, like `kyc_date`.
