@@ -46,7 +46,7 @@ All queries are in [`sql/04_business_questions.sql`](../sql/04_business_question
 ### Q4. Which campaigns waste money?
 - **Method:** `rpt.v_campaign_cac`. A campaign is wasteful when its CAC is at least twice the median campaign CAC of its own channel and its spend is at least 2,000 EUR. Campaigns are only compared inside their channel.
 - **Finding:** one campaign is flagged: SO_Summer_Reach_2026 (paid social, 1 June to 30 September 2026). Its CAC is 365.40 against a channel median of 62.20, so 5.9 times higher. It holds 18,124 of paid social's 73,973 spend (24.5%) and brought 49.6 customers. Every other campaign is between 0.86 and 1.25 times its channel median. Spend on days with zero impressions is small (about 2,000 in total, 1.3% of spend) and is not where the waste comes from. There is no clear November to December pattern in cost per customer. The real signal is paid social from June to September 2026, when the cost per customer was 144 to 201 against roughly 40 to 90 before.
-- **Used in:** the `Curves` and `Optimizer` sheets (the Summer Reach months are left out of the paid social curve by default).
+- **Used in:** the `Pivot_Tables` sheet (cost per customer by quarter and channel), and the `Curves` and `Optimizer` sheets (the Summer Reach months are left out of the paid social curve by default).
 
 ### Q5. Which channels bring customers who do not repay? (credit risk)
 - **Method:** `rpt.v_loan_dpd` and `rpt.v_credit_by_segment`. Rates use seasoned loans only (issued on or before 2026-03-31, 1,587 loans). A default is a worst days past due of 90 or more. Credit loss is 90% of the principal still owed when the loan first went 90 days late. Risk-adjusted LTV is the 12-month LTV minus the credit loss per customer.
