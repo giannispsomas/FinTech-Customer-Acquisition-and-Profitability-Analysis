@@ -1,0 +1,8 @@
+# files that are not part of the project
+_local/
+
+# editor and system files
+*.bak
+Thumbs.db
+desktop.ini
+.DS_Store
