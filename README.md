@@ -49,7 +49,8 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── 03_reporting_views.sql
 │   └── 04_business_questions.sql
 └── excel/                           Excel model
-    └── budget_model.xlsx            Unit economics, response curves, Solver optimizer, scenarios
+    ├── budget_model.xlsx            Unit economics, response curves, Solver optimizer, scenarios
+    └── Excel_Model_Walkthrough.pdf  Sheet-by-sheet walkthrough of the model, as a worked example
 ```
 
 ## Documentation
