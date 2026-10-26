@@ -68,7 +68,7 @@ Two choices matter for the numbers. CAC includes 2.50 EUR per KYC decision, not 
 
 ![Credit risk](power_bi/images/4_Credit_Risk.png)
 
-**6. A smaller, shifted budget beats the current one in all eight scenarios.** The optimizer cuts affiliate, paid search and paid social by half and raises referral by 20% (referral is capped at 120% of its baseline, because it is the smallest channel and may not scale). Total spend falls from 28,603 to 15,058 EUR, and the modelled net profit of the quarter improves from -97,564 to -56,843 EUR, an uplift of 40,720 EUR. The uplift is between 21,643 and 56,722 EUR across the eight scenarios.
+**6. A smaller, shifted budget beats the current one in all eight scenarios.** The optimizer cuts affiliate, paid search and paid social by half and raises referral by 20% (referral is capped at 120% of its baseline, because it is the smallest channel and may not scale). Total spend falls from 28,603 to 15,058 EUR, and the modelled net profit of the quarter improves from -97,564 to -56,843 EUR, an uplift of 40,720 EUR. The uplift is between 21,643 and 56,722 EUR across the eight scenarios. Four more cases move each channel's value to the low or high end of its bootstrap interval. The cut in affiliate and paid social holds in all of them, while the move into referral and any change in paid search depend on the assumed values ([LTV_Scenarios.md](docs/LTV_Scenarios.md)).
 
 ![Budget scenarios](power_bi/images/5_Budget_Scenarios.png)
 

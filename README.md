@@ -60,6 +60,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── Business_Questions.md        Business questions, methods and findings
 │   ├── Statistical_Comparison.md    Bootstrap intervals for CAC and LTV by channel
 │   ├── Credit_Risk_Model.md         Logistic regression on loan defaults, by channel
+│   ├── LTV_Scenarios.md             Optimizer re-run with optimistic and pessimistic channel values
 │   ├── Assumptions_and_Limitations.md   Definitions, assumptions and limits
 │   ├── DAX_Measures.md              The 41 DAX measures of the report
 │   └── Report_Guide.md              Page-by-page guide to the Power BI report
@@ -88,6 +89,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 | [reporting_views.md](docs/reporting_views.md) | The ten reporting views, their design decisions and checks |
 | [Business_Questions.md](docs/Business_Questions.md) | Each business question, its method and its finding |
 | [Statistical_Comparison.md](docs/Statistical_Comparison.md) | Bootstrap confidence intervals for CAC and LTV: which channel differences are more than chance |
+| [LTV_Scenarios.md](docs/LTV_Scenarios.md) | The budget optimizer re-run with each channel's value at the low and high end of its bootstrap interval |
 | [Credit_Risk_Model.md](docs/Credit_Risk_Model.md) | A logistic regression on loan defaults: why affiliate defaults more, and what the channel adds |
 | [Assumptions_and_Limitations.md](docs/Assumptions_and_Limitations.md) | Definitions, assumptions, and what the analysis cannot conclude |
 | [DAX_Measures.md](docs/DAX_Measures.md) | Every DAX measure of the report, its formula and the number to check it against |
