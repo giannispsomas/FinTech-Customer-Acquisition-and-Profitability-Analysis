@@ -43,7 +43,7 @@ Each page has a takeaway title: a sentence with the main result, so the page can
 
 ![Executive](../power_bi/images/1_Executive.png)
 
-**Takeaway:** Referral is the only channel that earns money per customer after credit losses.
+**Takeaway:** Only referral has a positive value per customer after credit losses.
 
 | Visual | What it shows |
 |---|---|
