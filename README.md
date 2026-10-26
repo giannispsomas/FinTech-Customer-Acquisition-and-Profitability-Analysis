@@ -51,6 +51,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 ├── Case_Study.md                    The question, method, findings and recommendations
 ├── Case_Study.pdf                   The same case study as a PDF
 ├── Executive_Summary.pdf            Executive summary for business readers
+├── Executive_Summary_Slides.pptx    The same story as 7 slides
 ├── LICENSE                          MIT license
 ├── data/                            The 10 CSV files
 ├── docs/                            Supporting documentation
@@ -88,6 +89,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 | [data_cleaning.md](docs/data_cleaning.md) | The cleaning rules, the row count log and the validation |
 | [reporting_views.md](docs/reporting_views.md) | The ten reporting views, their design decisions and checks |
 | [Business_Questions.md](docs/Business_Questions.md) | Each business question, its method and its finding |
+| [Executive_Summary_Slides.pptx](Executive_Summary_Slides.pptx) | A 7-slide presentation of the question, findings, recommendations and limits |
 | [Statistical_Comparison.md](docs/Statistical_Comparison.md) | Bootstrap confidence intervals for CAC and LTV: which channel differences are more than chance |
 | [LTV_Scenarios.md](docs/LTV_Scenarios.md) | The budget optimizer re-run with each channel's value at the low and high end of its bootstrap interval |
 | [Credit_Risk_Model.md](docs/Credit_Risk_Model.md) | A logistic regression on loan defaults: why affiliate defaults more, and what the channel adds |
@@ -113,6 +115,16 @@ The full list is in [Assumptions_and_Limitations.md](docs/Assumptions_and_Limita
 - **LTV:** the observed margin per customer over the first 12 months. **Risk-adjusted LTV** subtracts the credit loss on that customer's loans.
 - **Seasoned loan:** issued on or before 2026-03-31. Default rates use only seasoned loans.
 - **Attribution:** position-based credit (40% first click, 40% last click, 20% shared by the middle clicks), compared with first touch, last touch and the recorded channel.
+
+## Limitations
+
+The full list is in [Assumptions_and_Limitations.md](docs/Assumptions_and_Limitations.md). The ones that matter most:
+
+- **The data is generated,** so the channel ranking is a property of the simulation. The method carries over to real data, the numbers do not.
+- **Referral's positive value after credit losses is not proven.** Its 95% interval (-44 to +131 EUR) includes zero. Affiliate being the worst channel, and paid social having the highest CAC, are clear ([Statistical_Comparison.md](docs/Statistical_Comparison.md)).
+- **Credit risk is the weakest part.** Default behaviour is an assumption, loans issued after 2026-03-31 carry no loss yet, and the credit model is cross-validated on only 1,587 loans ([Credit_Risk_Model.md](docs/Credit_Risk_Model.md)).
+- **The response curves are rough** (24 monthly points per channel), and the optimizer's result depends on the assumed value per customer ([LTV_Scenarios.md](docs/LTV_Scenarios.md)).
+- **The recommendation is a hypothesis** that has not been tested, for example with a holdout. The KPI targets on the last report page are illustrative.
 
 ## Reproducing the Project
 
