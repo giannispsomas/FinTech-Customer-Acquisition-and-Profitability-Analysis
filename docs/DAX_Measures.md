@@ -33,7 +33,8 @@ All measures live in the `_Measures` table, an empty table that holds only measu
 3. [Attribution and campaigns page](#3-attribution-and-campaigns-page)
 4. [Credit risk page](#4-credit-risk-page)
 5. [Budget scenarios page](#5-budget-scenarios-page)
-6. [Calculated columns](#6-calculated-columns)
+6. [KPI scorecard page](#6-kpi-scorecard-page)
+7. [Calculated columns](#7-calculated-columns)
 
 ---
 
@@ -360,7 +361,71 @@ IF ( SUM ( 'rpt v_credit_by_segment'[seasoned_loans] ) < 50, 1, 0 )
 
 This page uses the columns of `tblScenarios` directly and needs no measure: `Scenario`, `Total spend (EUR)`, `Customers won`, `Net profit at recommended spend (EUR)` and `Uplift (EUR)`. The values are the Solver results pasted into the Excel model.
 
-## 6. Calculated columns
+## 6. KPI scorecard page
+
+Targets are illustrative (there are no real company targets). Each target is a measure that holds one number, so it can be changed in one place.
+
+```DAX
+Target CAC = 40
+Target LTV to CAC = 3
+Target Payback Month = 6
+Target Risk-adjusted LTV = 0
+Target Default Rate = 0.10
+Target Verified to Funded = 0.75
+```
+
+### Color measures
+One per KPI. They return a color for the background of the cell: green if the KPI meets its target, red if not, white if the KPI has no value (organic has no CAC, LTV/CAC or payback). KPIs where lower is better (CAC, payback, default rate) use `<=`, the others `>=`.
+```DAX
+CAC Color =
+IF ( ISBLANK ( [CAC] ), "#FFFFFF",
+    IF ( [CAC] <= [Target CAC], "#C6E0B4", "#F8CBAD" ) )
+```
+`LTV to CAC Color`, `Payback Color`, `Risk-adjusted LTV Color`, `Default Rate Color` and `Verified to Funded Color` follow the same pattern with their own measure and target. They are applied in the table with Format visual, Cell elements, Background color, Field value.
+
+### KPIs on Target, KPIs Measured and Scorecard Status
+```DAX
+KPIs on Target =
+IF ( NOT ISBLANK ( [CAC] ) && [CAC] <= [Target CAC], 1, 0 )
++ IF ( NOT ISBLANK ( [LTV to CAC] ) && [LTV to CAC] >= [Target LTV to CAC], 1, 0 )
++ IF ( NOT ISBLANK ( [Payback Month] ) && [Payback Month] <= [Target Payback Month], 1, 0 )
++ IF ( NOT ISBLANK ( [Risk-adjusted LTV] ) && [Risk-adjusted LTV] >= [Target Risk-adjusted LTV], 1, 0 )
++ IF ( NOT ISBLANK ( [Default Rate] ) && [Default Rate] <= [Target Default Rate], 1, 0 )
++ IF ( NOT ISBLANK ( [Verified to Funded] ) && [Verified to Funded] >= [Target Verified to Funded], 1, 0 )
+
+KPIs Measured =
+IF ( NOT ISBLANK ( [CAC] ), 1, 0 )
++ IF ( NOT ISBLANK ( [LTV to CAC] ), 1, 0 )
++ IF ( NOT ISBLANK ( [Payback Month] ), 1, 0 )
++ IF ( NOT ISBLANK ( [Risk-adjusted LTV] ), 1, 0 )
++ IF ( NOT ISBLANK ( [Default Rate] ), 1, 0 )
++ IF ( NOT ISBLANK ( [Verified to Funded] ), 1, 0 )
+
+Scorecard Status =
+IF ( [KPIs Measured] = 0, BLANK (),
+    [KPIs on Target] & " of " & [KPIs Measured] & " on target" )
+```
+Check: referral 6 of 6, paid search 4 of 6, affiliate 3 of 6, paid social 1 of 6, organic 1 of 3 (it has no CAC, LTV/CAC or payback). The page has 15 measures: 6 targets, 6 colors and these 3. The report has 56 measures in total.
+
+## 7. Calculated columns
+
+### Signup Quarter
+Added to `rpt v_funnel`, used on the axis of the verified-to-funded line.
+```DAX
+Signup Quarter =
+YEAR ( 'rpt v_funnel'[signup_date] )
+    & "-Q"
+    & QUOTIENT ( MONTH ( 'rpt v_funnel'[signup_date] ) - 1, 3 ) + 1
+```
+
+### Issue Quarter
+Added to `rpt v_loan_dpd`, used on the axis of the default-rate line. The chart leaves out 2024-Q4 with a filter on that visual only, because that quarter has only 4 to 13 loans per channel.
+```DAX
+Issue Quarter =
+YEAR ( 'rpt v_loan_dpd'[issue_date] )
+    & "-Q"
+    & QUOTIENT ( MONTH ( 'rpt v_loan_dpd'[issue_date] ) - 1, 3 ) + 1
+```
 
 ### Quarter
 Added to `rpt v_budget_inputs`, used on the axis of the cost-per-customer line.

@@ -1,6 +1,6 @@
 # Report Guide
 
-A page-by-page guide to the Power BI report: what each page shows, which numbers to look at first, and how to read the visuals. The file is `power_bi/Customer_Acquisition_Analysis.pbix`, and a PDF copy of all five pages is in `power_bi/Customer_Acquisition_Analysis.pdf`. The measures behind every number are in [DAX_Measures.md](DAX_Measures.md).
+A page-by-page guide to the Power BI report: what each page shows, which numbers to look at first, and how to read the visuals. The file is `power_bi/Customer_Acquisition_Analysis.pbix`, and a PDF copy of all six pages is in `power_bi/Customer_Acquisition_Analysis.pdf`. The measures behind every number are in [DAX_Measures.md](DAX_Measures.md).
 
 The report answers one question: which acquisition channels bring profitable customers, and how should next quarter's budget be reallocated?
 
@@ -141,3 +141,25 @@ Each page has a takeaway title: a sentence with the main result, so the page can
 - Budget +20% and -20% show the same result because the budget is a ceiling: the optimizer stops spending where a customer loses money.
 - "Credit losses +25%" has the largest uplift because the baseline suffers more than the recommended mix. "Budget fully spent" forces the whole budget out and moves money into paid social, which is why it is the smallest uplift.
 - The scenarios are what-ifs about the model, not predictions. See [Assumptions_and_Limitations.md](Assumptions_and_Limitations.md).
+
+---
+
+## Page 6: KPI scorecard
+
+![KPI scorecard](../power_bi/images/6_KPI_Scorecard.png)
+
+**Takeaway:** Referral meets all six targets; paid social meets only one.
+
+| Visual | What it shows |
+|---|---|
+| Scorecard table | Six KPIs per channel (CAC, LTV/CAC, payback month, risk-adjusted LTV, default rate, verified to funded). A cell is green when the KPI meets its target and red when it does not. The last column counts the targets met |
+| Targets note | The six targets and the colour rule |
+| Verified to funded line | The verified-to-funded rate by signup quarter, with the 75% target as a dashed line |
+| Default rate line | The default rate by loan issue quarter, with the 10% target as a dashed line |
+
+**How to read it**
+- The targets are illustrative: there are no real company targets, so they are set at common benchmarks. They sit in six measures (see [DAX_Measures.md](DAX_Measures.md)) and can be changed in one place.
+- Referral meets 6 of 6, paid search 4, affiliate 3 and paid social 1. Organic has no CAC, LTV/CAC or payback, so it is scored on the three KPIs it has (1 of 3).
+- Paid social is below the 75% line in every quarter (between 46% and 56%), so its funnel problem is long-standing, not recent.
+- Affiliate is above the 10% default line in every quarter (22% to 27%). The other channels move around the line, because each has only a few dozen loans per quarter.
+- The default-rate line starts in 2025-Q1. The first quarter (2024-Q4) has only 4 to 13 loans per channel and would be misleading.

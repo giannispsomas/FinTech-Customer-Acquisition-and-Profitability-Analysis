@@ -15,7 +15,7 @@ An analysis of customer acquisition for a fictional fintech company: 10,000 cust
 - **Paid social is the most expensive channel** (CAC 65.59 EUR) and **one campaign wastes money:** SO_Summer_Reach_2026 costs 365 EUR per customer against a channel median of 62.
 - **The model's best allocation** puts affiliate, paid search and paid social at half of their baseline spend and referral 20% above it. It improves the quarter by about 40,700 EUR, but the net result stays negative because loan losses dominate. The biggest lever is credit policy, not channel mix.
 
-**Skills shown:** data profiling and cleaning in T-SQL · reporting views with window functions and CTEs · attribution (first touch, last touch, position-based) · payback and LTV by cohort of months · response curves, Solver optimization and scenarios in Excel · a five-page Power BI report with DAX measures · documenting assumptions and limits honestly.
+**Skills shown:** data profiling and cleaning in T-SQL · reporting views with window functions and CTEs · attribution (first touch, last touch, position-based) · payback and LTV by cohort of months · response curves, Solver optimization and scenarios in Excel · a six-page Power BI report with DAX measures · documenting assumptions and limits honestly.
 
 ## Key Findings and Recommendations
 
@@ -31,13 +31,13 @@ The story from question to recommendation is in the **[Case Study](Case_Study.md
 2. **Excel:** unit economics, response curves per channel and a Solver budget optimizer with scenarios ([excel/](excel/)).
 
 3. **Python:** bootstrap confidence intervals for CAC and LTV by channel, and a logistic regression credit risk model ([python/](python/)).
-4. **Power BI:** a five-page report on the reporting views and the Excel results, with 41 DAX measures ([power_bi/](power_bi/)).
+4. **Power BI:** a six-page report on the reporting views and the Excel results, with 56 DAX measures ([power_bi/](power_bi/)).
 
 The data goes through three layers: `dbo` (raw, never changed), `clean` (cleaned copy) and `rpt` (reporting views).
 
 ## Dashboard
 
-The report has five pages: Executive, Funnel, Attribution and campaigns, Credit risk, and Budget scenarios. The full PDF is [power_bi/Customer_Acquisition_Analysis.pdf](power_bi/Customer_Acquisition_Analysis.pdf), and every page is explained in [Report_Guide.md](docs/Report_Guide.md).
+The report has six pages: Executive, Funnel, Attribution and campaigns, Credit risk, Budget scenarios, and KPI scorecard. The full PDF is [power_bi/Customer_Acquisition_Analysis.pdf](power_bi/Customer_Acquisition_Analysis.pdf), and every page is explained in [Report_Guide.md](docs/Report_Guide.md).
 
 ![Executive page](power_bi/images/1_Executive.png)
 
@@ -62,7 +62,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── Credit_Risk_Model.md         Logistic regression on loan defaults, by channel
 │   ├── LTV_Scenarios.md             Optimizer re-run with optimistic and pessimistic channel values
 │   ├── Assumptions_and_Limitations.md   Definitions, assumptions and limits
-│   ├── DAX_Measures.md              The 41 DAX measures of the report
+│   ├── DAX_Measures.md              The 56 DAX measures of the report
 │   └── Report_Guide.md              Page-by-page guide to the Power BI report
 ├── python/                          Python analysis (bootstrap intervals, credit risk model)
 ├── sql/                             T-SQL scripts (profiling, cleaning, reporting views, business questions)
@@ -74,7 +74,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── budget_model.xlsx            Unit economics, response curves, Solver optimizer, scenarios
 │   └── Excel_Model_Walkthrough.pdf  Sheet-by-sheet walkthrough of the model, as a worked example
 └── power_bi/                        Power BI report
-    ├── Customer_Acquisition_Analysis.pbix   The report (5 pages)
+    ├── Customer_Acquisition_Analysis.pbix   The report (6 pages)
     ├── Customer_Acquisition_Analysis.pdf    PDF export of the report
     ├── Customer_Acquisition_Theme.json      Colour theme
     └── images/                      One screenshot per page

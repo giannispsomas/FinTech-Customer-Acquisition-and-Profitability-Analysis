@@ -3,7 +3,7 @@
 **A customer acquisition and profitability analysis for a fictional fintech company**
 SQL Server · Excel (Solver) · Power BI
 
-> **The short version:** Every paid channel earns back its acquisition cost within six months, but once credit losses are counted only referral earns money per customer (+54.49 EUR over 12 months, against -84.10 EUR for all customers together). Affiliate looks best before credit losses (251.54 EUR) and is the worst after them (-490.95 EUR), because 24.1% of its loans default. In the Excel model, spending half as much on affiliate, paid search and paid social, and 20% more on referral, improves the quarter by about 40,700 EUR. That is a model estimate, not a tested result.
+> **The short version:** Every paid channel earns back its acquisition cost within six months, but once credit losses are counted only referral has a positive value per customer (+54.49 EUR over 12 months, against -84.10 EUR for all customers together, although this positive value is not statistically proven). Affiliate looks best before credit losses (251.54 EUR) and is the worst after them (-490.95 EUR), because 24.1% of its loans default. In the Excel model, spending half as much on affiliate, paid search and paid social, and 20% more on referral, improves the quarter by about 40,700 EUR. That is a model estimate, not a tested result.
 
 [Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf) · [Code and documentation](README.md)
 
@@ -44,7 +44,7 @@ Only the customers table loses rows. Every other table keeps all of its rows, an
 | Answer five questions | SQL with CTEs and window functions | Each question has a query, a result and a decision. |
 | Reallocate the budget | Excel model: response curves, then Solver | A curve says how many customers an extra euro buys, and Solver finds the best split under limits. |
 | Test the answer | Eight scenarios in Excel | A recommendation that breaks when one assumption moves should not be trusted. |
-| Report | Five-page Power BI report, 41 DAX measures | A non-technical reader can follow it page by page. |
+| Report | Six-page Power BI report, 56 DAX measures | A non-technical reader can follow it page by page. |
 
 Two choices matter for the numbers. CAC includes 2.50 EUR per KYC decision, not only ad spend. And LTV is the margin actually observed in the first 12 months, then reduced by the credit loss per customer, because a customer who defaults is not worth the interest they paid before.
 
