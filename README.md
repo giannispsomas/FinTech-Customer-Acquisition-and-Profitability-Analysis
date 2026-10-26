@@ -1,12 +1,12 @@
 # FinTech Customer Acquisition and Profitability Analysis
 
-An analysis of customer acquisition for a fictional neobank (Meltemi Bank): 10,000 customers, 24 months and about 136,000 rows across 10 tables. The project takes raw data through SQL Server and Excel to answer one question: **which acquisition channels bring profitable customers, and how should next quarter's marketing budget be reallocated?**
+An analysis of customer acquisition for a fictional fintech company: 10,000 customers, 24 months and about 136,000 rows across 10 tables. The project takes raw data through SQL Server and Excel to answer one question: **which acquisition channels bring profitable customers, and how should next quarter's marketing budget be reallocated?**
 
 **Tools:** SQL Server (T-SQL) · Excel (Solver) · Power BI
 
 **Start here:** [Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf)
 
-> The data is **synthetic**. It was generated with Python (fixed seed). The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The bank, its customers and its numbers are not real.
+> The data is **synthetic**. It was generated with Python (fixed seed). The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The company, its customers and its numbers are not real.
 
 ### At a glance
 
@@ -51,7 +51,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 ├── Case_Study.pdf                   The same case study as a PDF
 ├── Executive_Summary.pdf            Executive summary for business readers
 ├── LICENSE                          MIT license
-├── data/                            The 10 synthetic CSV files
+├── data/                            The 10 CSV files
 ├── docs/                            Supporting documentation
 │   ├── data_profiling.md            Profiling of the raw data
 │   ├── data_cleaning.md             Cleaning steps and row counts
@@ -89,12 +89,12 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 
 ## Dataset
 
-- **Source:** synthetic, generated with Python.
+- **Source:** generated with Python.
 - **Tables:** channels, campaigns, daily_ad_spend, customers, touchpoints, accounts, transactions, loans, repayments, assumptions.
 - **Size:** 136,098 rows over 24 months (October 2024 to September 2026). The extract date is 2026-09-30.
 - **Messiness:** the raw tables contain data quality problems, such as duplicates, spelling variants and sign errors. 100 duplicate customer records are removed in the cleaning step, which leaves 10,000 customers.
 
-> The CSV files are included in `data/` because the data is synthetic and small enough to share.
+> The CSV files are included in `data/` because the data is small enough to share.
 
 ## Definitions and Assumptions
 
@@ -130,4 +130,4 @@ Giannis Psomas. Data analyst portfolio project.
 
 ## License
 
-The code in this repository is released under the [MIT License](LICENSE). The data is synthetic.
+The code in this repository is released under the [MIT License](LICENSE).

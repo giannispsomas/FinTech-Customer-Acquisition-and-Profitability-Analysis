@@ -32,7 +32,7 @@ go
 ================================================================================
 PART 2 - CUSTOMER AND MARGIN VIEWS
 ================================================================================
-The funded customers and what each one earns the bank, month by month.
+The funded customers and what each one earns the company, month by month.
 ================================================================================
 */
 

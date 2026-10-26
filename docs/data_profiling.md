@@ -2,7 +2,7 @@
 
 ## Overview
 
-- **Data:** synthetic, for a fictional bank (Meltemi Bank). Generated with Python using a fixed seed.
+- **Data:** synthetic, for a fictional fintech company. Generated with Python using a fixed seed.
 - **Size:** 10 tables, 136,098 rows, October 2024 to September 2026. The extract date is 2026-09-30.
 - **Tool:** SQL Server. The raw tables stay in schema `dbo` and are never changed.
 - **Purpose:** find what is wrong with the raw tables before cleaning them, and decide what to do about each problem.

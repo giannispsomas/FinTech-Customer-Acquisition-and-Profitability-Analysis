@@ -14,7 +14,7 @@ This document lists the definitions the analysis relies on and what it cannot co
 
 ## 1. Data and scope
 
-- **Source:** a synthetic dataset for a fictional bank (Meltemi Bank), generated with Python using a fixed seed. The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The bank, its customers and its numbers are not real.
+- **Source:** a synthetic dataset for a fictional fintech company, generated with Python using a fixed seed. The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The bank, its customers and its numbers are not real.
 - **Currency:** all amounts are in EUR.
 - **Period:** October 2024 to September 2026. The extract date is 2026-09-30.
 - **Size:** 10 tables and 136,098 rows. After the duplicate records are removed there are 10,000 customers, of whom 5,928 funded.
@@ -86,7 +86,7 @@ This document lists the definitions the analysis relies on and what it cannot co
 
 ## 5. What the analysis does not claim
 
-- It does not claim these numbers describe a real bank or real customers.
+- It does not claim these numbers describe a real company or real customers.
 - It does not claim that reallocating the budget will produce the modelled uplift. The uplift is a model estimate, and the recommendation is a hypothesis that has not been tested.
 - It does not claim that channels cause the differences in credit risk. It shows which channels brought customers who later defaulted, in this dataset.
 - It does not claim that the best allocation fixes profitability. Most of the loss comes from loan losses, which marketing spend cannot change.

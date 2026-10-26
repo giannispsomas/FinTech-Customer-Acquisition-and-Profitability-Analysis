@@ -1,6 +1,6 @@
 # Case Study: Which Acquisition Channels Bring Profitable Customers?
 
-**A customer acquisition and profitability analysis for a fictional neobank**
+**A customer acquisition and profitability analysis for a fictional fintech company**
 SQL Server · Excel (Solver) · Power BI
 
 > **The short version:** Every paid channel earns back its acquisition cost within six months, but once credit losses are counted only referral earns money per customer (+54.49 EUR over 12 months, against -84.10 EUR for all customers together). Affiliate looks best before credit losses (251.54 EUR) and is the worst after them (-490.95 EUR), because 24.1% of its loans default. In the Excel model, spending half as much on affiliate, paid search and paid social, and 20% more on referral, improves the quarter by about 40,700 EUR. That is a model estimate, not a tested result.
@@ -11,7 +11,7 @@ SQL Server · Excel (Solver) · Power BI
 
 ## The question
 
-Meltemi Bank is a fictional neobank. It has two years of data and one decision to make: next quarter's marketing budget. Which channels bring customers who are worth what they cost, and where should the money go? I set out to answer five smaller questions first:
+A fictional fintech company has two years of data and one decision to make: next quarter's marketing budget. Which channels bring customers who are worth what they cost, and where should the money go? I set out to answer five smaller questions first:
 
 1. Where do we lose people between signup and an active account, and does it differ by channel?
 2. Which channels earn back what we paid to win a customer, and how fast?
@@ -23,7 +23,7 @@ The answers feed one headline question: how should the budget be reallocated?
 
 ## The data, and what I fixed before analysing it
 
-The data is synthetic. I generated it with Python for a made-up bank, with ten tables and 136,098 rows: 10,000 customers, 64,908 transactions, 21,019 ad touchpoints, 2,290 loans and 19,190 loan installments, from October 2024 to September 2026. The credit part follows the published grade mix of LendingClub, but the default behaviour and the marketing behaviour are my own assumptions. The findings therefore describe this simulation, not a real bank.
+The data is synthetic. I generated it with Python for a made-up company, with ten tables and 136,098 rows: 10,000 customers, 64,908 transactions, 21,019 ad touchpoints, 2,290 loans and 19,190 loan installments, from October 2024 to September 2026. The credit part follows the published grade mix of LendingClub, but the default behaviour and the marketing behaviour are my own assumptions. The findings therefore describe this simulation, not a real bank.
 
 Before any analysis I profiled the tables and cleaned them in T-SQL, because every number below depends on who counts as a customer:
 
