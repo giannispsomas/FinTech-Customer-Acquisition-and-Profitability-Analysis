@@ -75,3 +75,12 @@ The model is in [`excel/budget_model.xlsx`](../excel/budget_model.xlsx). It fits
 | Q4 Wasteful campaigns | `v_campaign_cac` | `Curves` (Summer Reach switch) |
 | Q5 Credit risk | `v_loan_dpd`, `v_credit_by_segment`, `v_channel_scorecard` | `Unit_Economics`, `Optimizer` |
 | Headline | `v_budget_inputs` | `Optimizer`, `Scenarios`, `Summary` |
+
+## 4. Checks added after the first version
+
+| Check | Question it answers | Where |
+|---|---|---|
+| Bootstrap intervals for CAC and LTV | Which channel differences are larger than chance? | [Statistical_Comparison.md](Statistical_Comparison.md) |
+| Logistic regression on loan defaults | Why does affiliate default more: the channel or the loans it brings? | [Credit_Risk_Model.md](Credit_Risk_Model.md) |
+| Optimizer re-run with channel values at the ends of their intervals | Does the recommended allocation survive the uncertainty? | [LTV_Scenarios.md](LTV_Scenarios.md) |
+| KPI scorecard with targets | Which channels meet which targets, and how are the trends moving? | Page 6 of the Power BI report, [Report_Guide.md](Report_Guide.md) |

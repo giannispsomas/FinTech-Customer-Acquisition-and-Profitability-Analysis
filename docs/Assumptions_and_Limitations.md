@@ -90,3 +90,12 @@ This document lists the definitions the analysis relies on and what it cannot co
 - It does not claim that reallocating the budget will produce the modelled uplift. The uplift is a model estimate, and the recommendation is a hypothesis that has not been tested.
 - It does not claim that channels cause the differences in credit risk. It shows which channels brought customers who later defaulted, in this dataset.
 - It does not claim that the best allocation fixes profitability. Most of the loss comes from loan losses, which marketing spend cannot change.
+
+## 6. Checks added after the first version
+
+Four later pieces of work test how far the findings can be trusted. They change how some results should be worded:
+
+- **Bootstrap intervals** ([Statistical_Comparison.md](Statistical_Comparison.md)): affiliate is clearly the worst channel after credit losses and paid social clearly has the highest CAC, but referral's positive risk-adjusted LTV (+54.49 EUR, interval -44 to +131) is not proven. The wording "only referral has a positive average" is exact; "referral clearly earns money" is not supported.
+- **Credit risk model** ([Credit_Risk_Model.md](Credit_Risk_Model.md)): most of affiliate's default problem comes from the loans it brings (grade and segment mix), with a smaller leftover gap of 5 points.
+- **LTV scenarios** ([LTV_Scenarios.md](LTV_Scenarios.md)): the cut in affiliate and paid social holds when each channel's value moves within its interval; the move into referral and any change in paid search depend on the assumed values.
+- **KPI scorecard** (last page of the report): the six targets are illustrative and were set at common benchmarks, not taken from a real company.
