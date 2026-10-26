@@ -1,5 +1,8 @@
 # files that are not part of the project
-_local/
+Video/
+Study notes/
+Archive/
+README.txt
 
 # editor and system files
 *.bak
