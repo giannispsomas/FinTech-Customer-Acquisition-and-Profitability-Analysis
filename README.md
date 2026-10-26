@@ -2,7 +2,7 @@
 
 An analysis of customer acquisition for a fictional fintech company: 10,000 customers, 24 months and about 136,000 rows across 10 tables. The project takes raw data through SQL Server and Excel to answer one question: **which acquisition channels bring profitable customers, and how should next quarter's marketing budget be reallocated?**
 
-**Tools:** SQL Server (T-SQL) · Excel (Solver) · Power BI
+**Tools:** SQL Server (T-SQL) · Excel (Solver) · Power BI · Python
 
 **Start here:** [Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf)
 
@@ -10,7 +10,7 @@ An analysis of customer acquisition for a fictional fintech company: 10,000 cust
 
 ### At a glance
 
-- **Before credit loss, every paid channel pays back its acquisition cost within 12 months** (referral in month 2, paid social in month 6). **After credit loss, only referral earns money per customer** (+54 EUR, against -28 to -491 EUR for the other channels).
+- **Before credit loss, every paid channel pays back its acquisition cost within 12 months** (referral in month 2, paid social in month 6). **After credit loss, only referral has a positive average per customer** (+54 EUR, against -28 to -491 EUR for the other channels). Bootstrap intervals show affiliate is clearly the worst, while referral's positive value is not yet proven ([details](docs/Statistical_Comparison.md)).
 - **Affiliate has the best 12-month value (252 EUR per customer) but the worst credit risk:** 24% of its seasoned loans default, against 6.5% to 12.5% elsewhere, concentrated in students.
 - **Paid social is the most expensive channel** (CAC 65.59 EUR) and **one campaign wastes money:** SO_Summer_Reach_2026 costs 365 EUR per customer against a channel median of 62.
 - **The model's best allocation** puts affiliate, paid search and paid social at half of their baseline spend and referral 20% above it. It improves the quarter by about 40,700 EUR, but the net result stays negative because loan losses dominate. The biggest lever is credit policy, not channel mix.
@@ -30,7 +30,8 @@ The story from question to recommendation is in the **[Case Study](Case_Study.md
 1. **SQL Server:** profile and clean the raw data, then define every metric once in reporting views ([sql/](sql/)).
 2. **Excel:** unit economics, response curves per channel and a Solver budget optimizer with scenarios ([excel/](excel/)).
 
-3. **Power BI:** a five-page report on the reporting views and the Excel results, with 41 DAX measures ([power_bi/](power_bi/)).
+3. **Python:** bootstrap confidence intervals for CAC and LTV by channel ([python/](python/)).
+4. **Power BI:** a five-page report on the reporting views and the Excel results, with 41 DAX measures ([power_bi/](power_bi/)).
 
 The data goes through three layers: `dbo` (raw, never changed), `clean` (cleaned copy) and `rpt` (reporting views).
 
@@ -57,9 +58,11 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── data_cleaning.md             Cleaning steps and row counts
 │   ├── reporting_views.md           The reporting layer: grain, rules and checks of each view
 │   ├── Business_Questions.md        Business questions, methods and findings
+│   ├── Statistical_Comparison.md    Bootstrap intervals for CAC and LTV by channel
 │   ├── Assumptions_and_Limitations.md   Definitions, assumptions and limits
 │   ├── DAX_Measures.md              The 41 DAX measures of the report
 │   └── Report_Guide.md              Page-by-page guide to the Power BI report
+├── python/                          Bootstrap analysis (script, results, figure)
 ├── sql/                             T-SQL scripts (profiling, cleaning, reporting views, business questions)
 │   ├── 01_data_profiling.sql
 │   ├── 02_data_cleaning.sql
@@ -83,6 +86,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 | [data_cleaning.md](docs/data_cleaning.md) | The cleaning rules, the row count log and the validation |
 | [reporting_views.md](docs/reporting_views.md) | The ten reporting views, their design decisions and checks |
 | [Business_Questions.md](docs/Business_Questions.md) | Each business question, its method and its finding |
+| [Statistical_Comparison.md](docs/Statistical_Comparison.md) | Bootstrap confidence intervals for CAC and LTV: which channel differences are more than chance |
 | [Assumptions_and_Limitations.md](docs/Assumptions_and_Limitations.md) | Definitions, assumptions, and what the analysis cannot conclude |
 | [DAX_Measures.md](docs/DAX_Measures.md) | Every DAX measure of the report, its formula and the number to check it against |
 | [Report_Guide.md](docs/Report_Guide.md) | The data model and a page-by-page guide to the Power BI report |
@@ -112,6 +116,7 @@ The full list is in [Assumptions_and_Limitations.md](docs/Assumptions_and_Limita
 - SQL Server (developed on SQL Server Express) and SQL Server Management Studio
 - Excel with the Solver add-in enabled
 - Power BI Desktop (to open the report)
+- Python 3 with the packages in `requirements.txt` (for the bootstrap analysis)
 
 ### Steps
 
@@ -119,7 +124,8 @@ The full list is in [Assumptions_and_Limitations.md](docs/Assumptions_and_Limita
 2. **Load the data into SQL Server.** Load the CSV files from `data/` into schema `dbo` with the **Import Flat File** wizard in SQL Server Management Studio; there is no import script. Use the table names `channels`, `campaigns`, `daily_ad_spend`, `customers`, `touchpoints`, `accounts`, `transactions`, `loans`, `repayments` and `assumptions`.
 3. **Run the SQL scripts** in [sql/](sql/) in numbered order, from `01_data_profiling.sql` through `04_business_questions.sql`. `01` only reads. `02` builds the clean tables, `03` builds the reporting views, and `04` holds the analysis queries.
 4. **Open the Excel model** in [excel/](excel/). The data sheets hold the results of the SQL views. To refresh them, run the views again and paste the results. Press Solve in the `Optimizer` sheet to rerun the optimization.
-5. **Open the Power BI report** [power_bi/Customer_Acquisition_Analysis.pbix](power_bi/Customer_Acquisition_Analysis.pbix). It reads the `rpt` views from the `NeobankGrowth` database on `.\SQLEXPRESS` with Windows authentication, and the two result tables from `excel/budget_model.xlsx`. If your server or file path differs, change the data source in Transform data, then Data source settings.
+5. **Run the Python analysis** (optional): `pip install -r requirements.txt`, then `python python/01_channel_bootstrap.py` from the repository root. It reads the `rpt` views and writes the results and the figure to `python/`.
+6. **Open the Power BI report** [power_bi/Customer_Acquisition_Analysis.pbix](power_bi/Customer_Acquisition_Analysis.pbix). It reads the `rpt` views from the `NeobankGrowth` database on `.\SQLEXPRESS` with Windows authentication, and the two result tables from `excel/budget_model.xlsx`. If your server or file path differs, change the data source in Transform data, then Data source settings.
 
 ## About the author
 

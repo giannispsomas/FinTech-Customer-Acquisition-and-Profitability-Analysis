@@ -64,7 +64,7 @@ Two choices matter for the numbers. CAC includes 2.50 EUR per KYC decision, not 
 
 ![Attribution and campaigns](power_bi/images/3_Attribution_and_Campaigns.png)
 
-**5. After credit losses only referral is positive.** Credit loss over the 1,587 seasoned loans is 841,904 EUR and 12.8% of loans default. Affiliate defaults on 24.1% (others 6.5% to 12.5%) and has the largest credit loss of any channel (325,882 EUR) from the smallest number of loans (286). The problem is concentrated: 37.0% of affiliate students show an early default.
+**5. After credit losses only referral has a positive average.** Credit loss over the 1,587 seasoned loans is 841,904 EUR and 12.8% of loans default. Affiliate defaults on 24.1% (others 6.5% to 12.5%) and has the largest credit loss of any channel (325,882 EUR) from the smallest number of loans (286). The problem is concentrated: 37.0% of affiliate students show an early default. A bootstrap shows that affiliate is clearly the worst channel after credit losses, while referral's positive value (+54.49) is not proven: its 95% interval runs from -44 to +131 ([Statistical_Comparison.md](docs/Statistical_Comparison.md)).
 
 ![Credit risk](power_bi/images/4_Credit_Risk.png)
 
@@ -85,6 +85,7 @@ These are hypotheses to test, in this order of confidence. None of them has been
 ## How much to trust this
 
 - **The data is synthetic.** The ranking of channels is a property of my simulation. The method carries over to real data, the numbers do not.
+- **Referral's advantage is not proven.** The 95% interval of its risk-adjusted LTV includes zero, and it cannot be separated from paid search or organic. Affiliate's weakness and paid social's high CAC are clear.
 - **Credit risk is the weakest part.** Default behaviour is an assumption, loans after 2026-03-31 carry no loss yet (so the loss is a floor), and cells with fewer than 50 loans are greyed out in the report and should not be read as findings.
 - **The curves are rough.** Each response curve has 24 monthly points and an R squared between 0.25 and 0.70. The paid social curve predicts 74 customers a month at its baseline spend against 40 won, because of the Summer Reach campaign. I leave those months out of its fit by default.
 - **LTV is conservative.** Credit loss covers the life of a loan while LTV covers 12 months, so interest after month 12 (about 44 to 69 EUR per customer) is not counted. Counting it moves the uplift to 30,107 EUR and does not change the recommendation.
