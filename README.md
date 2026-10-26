@@ -30,7 +30,7 @@ The story from question to recommendation is in the **[Case Study](Case_Study.md
 1. **SQL Server:** profile and clean the raw data, then define every metric once in reporting views ([sql/](sql/)).
 2. **Excel:** unit economics, response curves per channel and a Solver budget optimizer with scenarios ([excel/](excel/)).
 
-3. **Python:** bootstrap confidence intervals for CAC and LTV by channel ([python/](python/)).
+3. **Python:** bootstrap confidence intervals for CAC and LTV by channel, and a logistic regression credit risk model ([python/](python/)).
 4. **Power BI:** a five-page report on the reporting views and the Excel results, with 41 DAX measures ([power_bi/](power_bi/)).
 
 The data goes through three layers: `dbo` (raw, never changed), `clean` (cleaned copy) and `rpt` (reporting views).
@@ -59,10 +59,11 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 │   ├── reporting_views.md           The reporting layer: grain, rules and checks of each view
 │   ├── Business_Questions.md        Business questions, methods and findings
 │   ├── Statistical_Comparison.md    Bootstrap intervals for CAC and LTV by channel
+│   ├── Credit_Risk_Model.md         Logistic regression on loan defaults, by channel
 │   ├── Assumptions_and_Limitations.md   Definitions, assumptions and limits
 │   ├── DAX_Measures.md              The 41 DAX measures of the report
 │   └── Report_Guide.md              Page-by-page guide to the Power BI report
-├── python/                          Bootstrap analysis (script, results, figure)
+├── python/                          Python analysis (bootstrap intervals, credit risk model)
 ├── sql/                             T-SQL scripts (profiling, cleaning, reporting views, business questions)
 │   ├── 01_data_profiling.sql
 │   ├── 02_data_cleaning.sql
@@ -87,6 +88,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 | [reporting_views.md](docs/reporting_views.md) | The ten reporting views, their design decisions and checks |
 | [Business_Questions.md](docs/Business_Questions.md) | Each business question, its method and its finding |
 | [Statistical_Comparison.md](docs/Statistical_Comparison.md) | Bootstrap confidence intervals for CAC and LTV: which channel differences are more than chance |
+| [Credit_Risk_Model.md](docs/Credit_Risk_Model.md) | A logistic regression on loan defaults: why affiliate defaults more, and what the channel adds |
 | [Assumptions_and_Limitations.md](docs/Assumptions_and_Limitations.md) | Definitions, assumptions, and what the analysis cannot conclude |
 | [DAX_Measures.md](docs/DAX_Measures.md) | Every DAX measure of the report, its formula and the number to check it against |
 | [Report_Guide.md](docs/Report_Guide.md) | The data model and a page-by-page guide to the Power BI report |
@@ -124,7 +126,7 @@ The full list is in [Assumptions_and_Limitations.md](docs/Assumptions_and_Limita
 2. **Load the data into SQL Server.** Load the CSV files from `data/` into schema `dbo` with the **Import Flat File** wizard in SQL Server Management Studio; there is no import script. Use the table names `channels`, `campaigns`, `daily_ad_spend`, `customers`, `touchpoints`, `accounts`, `transactions`, `loans`, `repayments` and `assumptions`.
 3. **Run the SQL scripts** in [sql/](sql/) in numbered order, from `01_data_profiling.sql` through `04_business_questions.sql`. `01` only reads. `02` builds the clean tables, `03` builds the reporting views, and `04` holds the analysis queries.
 4. **Open the Excel model** in [excel/](excel/). The data sheets hold the results of the SQL views. To refresh them, run the views again and paste the results. Press Solve in the `Optimizer` sheet to rerun the optimization.
-5. **Run the Python analysis** (optional): `pip install -r requirements.txt`, then `python python/01_channel_bootstrap.py` from the repository root. It reads the `rpt` views and writes the results and the figure to `python/`.
+5. **Run the Python analysis** (optional): `pip install -r requirements.txt`, then `python python/01_channel_bootstrap.py` and `python python/02_credit_risk_model.py` from the repository root. They read the `rpt` views and writes the results and the figure to `python/`.
 6. **Open the Power BI report** [power_bi/Customer_Acquisition_Analysis.pbix](power_bi/Customer_Acquisition_Analysis.pbix). It reads the `rpt` views from the `NeobankGrowth` database on `.\SQLEXPRESS` with Windows authentication, and the two result tables from `excel/budget_model.xlsx`. If your server or file path differs, change the data source in Transform data, then Data source settings.
 
 ## About the author

@@ -64,7 +64,7 @@ Two choices matter for the numbers. CAC includes 2.50 EUR per KYC decision, not 
 
 ![Attribution and campaigns](power_bi/images/3_Attribution_and_Campaigns.png)
 
-**5. After credit losses only referral has a positive average.** Credit loss over the 1,587 seasoned loans is 841,904 EUR and 12.8% of loans default. Affiliate defaults on 24.1% (others 6.5% to 12.5%) and has the largest credit loss of any channel (325,882 EUR) from the smallest number of loans (286). The problem is concentrated: 37.0% of affiliate students show an early default. A bootstrap shows that affiliate is clearly the worst channel after credit losses, while referral's positive value (+54.49) is not proven: its 95% interval runs from -44 to +131 ([Statistical_Comparison.md](docs/Statistical_Comparison.md)).
+**5. After credit losses only referral has a positive average.** Credit loss over the 1,587 seasoned loans is 841,904 EUR and 12.8% of loans default. Affiliate defaults on 24.1% (others 6.5% to 12.5%) and has the largest credit loss of any channel (325,882 EUR) from the smallest number of loans (286). The problem is concentrated: 37.0% of affiliate students show an early default. A bootstrap shows that affiliate is clearly the worst channel after credit losses, while referral's positive value (+54.49) is not proven: its 95% interval runs from -44 to +131 ([Statistical_Comparison.md](docs/Statistical_Comparison.md)). A logistic regression on the 1,587 seasoned loans (ROC-AUC 0.73) shows that most of affiliate's problem is its loan mix: 61% of its loans fall in the highest-risk fifth, against 2% for referral. Given the mix, affiliate still defaults 5.1 points more than predicted ([Credit_Risk_Model.md](docs/Credit_Risk_Model.md)).
 
 ![Credit risk](power_bi/images/4_Credit_Risk.png)
 
@@ -77,7 +77,7 @@ Two choices matter for the numbers. CAC includes 2.50 EUR per KYC decision, not 
 These are hypotheses to test, in this order of confidence. None of them has been tested.
 
 1. **Stop the Summer Reach style of spend in paid social.** One campaign took a quarter of the channel's budget at five to six times the normal cost per customer. This is the strongest finding because it does not depend on the model.
-2. **Change how affiliate customers are accepted, before changing how much is spent on affiliate.** Its acquisition cost is fine; its credit losses are not. Tighter credit rules for affiliate students are a smaller step than cutting a channel that has the best value before credit losses.
+2. **Change how affiliate customers are accepted, before changing how much is spent on affiliate.** Its acquisition cost is fine; its credit losses are not, and the model shows they come mostly from the grade and segment mix. Tighter credit rules for the riskiest grades and for students are a smaller step than cutting a channel that has the best value before credit losses.
 3. **Move money to referral, in steps.** Referral is the only channel with positive value after credit losses, but it is the smallest, and a 20% increase is a test of whether it scales, not a plan.
 4. **Report channel results with position-based credit next to the recorded channel.** Paid search is probably better, and paid social worse, than the recorded numbers say.
 5. **Look at why paid social customers verify but do not fund.** Moving the same step to a cheaper channel would not fix a 52% rate.
@@ -99,7 +99,6 @@ The full list is in [Assumptions and Limitations](docs/Assumptions_and_Limitatio
 - Look at retention by channel. A quick check shows about 9% of paid social customers and 11% of affiliate customers still transacting in month 12, against 44% for referral. I left retention and RFM out on purpose, because the first project covers them, but this would be the first thing to add.
 - Test the recommendation with a holdout: change the budget in one market or one month and compare, before moving the whole budget.
 - Fit the curves on weekly data instead of monthly, to get more than 24 points per channel.
-- Add a credit-risk cut by loan grade and amount, so the affiliate result can be explained by who borrows, not only by which channel brought them.
 
 ---
 

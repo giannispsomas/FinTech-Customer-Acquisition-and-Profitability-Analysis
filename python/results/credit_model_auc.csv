@@ -1,0 +1,3 @@
+model,auc_mean,auc_sd,auc_low,auc_high
+A: loan features only,0.729,0.043,0.646,0.805
+B: loan features + channel,0.723,0.042,0.649,0.807
