@@ -4,7 +4,7 @@ An analysis of customer acquisition for a fictional fintech company: 10,000 cust
 
 **Tools:** SQL Server (T-SQL) · Excel (Solver) · Power BI · Python
 
-**Start here:** [Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf)
+**Start here:** [Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf) · [Slides (PPTX)](Executive_Summary_Slides.pptx)
 
 > The data is **synthetic**. It was generated with Python (fixed seed). The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The company, its customers and its numbers are not real.
 
