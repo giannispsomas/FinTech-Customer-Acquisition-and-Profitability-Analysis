@@ -4,7 +4,7 @@ An analysis of customer acquisition for a fictional neobank (Meltemi Bank): 10,0
 
 **Tools:** SQL Server (T-SQL) · Excel (Solver) · Power BI
 
-**Start here:** [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [One-page summary (PDF)](Executive_Summary.pdf)
+**Start here:** [Case study](Case_Study.md) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf)
 
 > The data is **synthetic**. It was generated with Python (fixed seed). The credit part is shaped after LendingClub's published grade mix and APR range. Default rates and all marketing and banking behaviour are assumptions. The bank, its customers and its numbers are not real.
 
@@ -49,7 +49,7 @@ FinTech-Customer-Acquisition-and-Profitability-Analysis/
 ├── README.md                        Project overview (this file)
 ├── Case_Study.md                    The question, method, findings and recommendations
 ├── Case_Study.pdf                   The same case study as a PDF
-├── Executive_Summary.pdf            One-page summary for business readers
+├── Executive_Summary.pdf            Executive summary for business readers
 ├── LICENSE                          MIT license
 ├── data/                            The 10 synthetic CSV files
 ├── docs/                            Supporting documentation
