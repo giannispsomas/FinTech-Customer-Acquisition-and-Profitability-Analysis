@@ -5,7 +5,7 @@ SQL Server · Excel (Solver) · Power BI
 
 > **The short version:** Every paid channel earns back its acquisition cost within six months, but once credit losses are counted only referral earns money per customer (+54.49 EUR over 12 months, against -84.10 EUR for all customers together). Affiliate looks best before credit losses (251.54 EUR) and is the worst after them (-490.95 EUR), because 24.1% of its loans default. In the Excel model, spending half as much on affiliate, paid search and paid social, and 20% more on referral, improves the quarter by about 40,700 EUR. That is a model estimate, not a tested result.
 
-[Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf) · [Code and documentation](README.md)
+[Video walkthrough (3 min)](https://www.youtube.com/watch?v=IQ7_uw7gf64) · [Dashboard report (PDF)](power_bi/Customer_Acquisition_Analysis.pdf) · [Executive summary (PDF)](Executive_Summary.pdf) · [Code and documentation](README.md)
 
 ---
 
