@@ -22,7 +22,7 @@ All queries are in [`sql/04_business_questions.sql`](../sql/04_business_question
 ### Q1. Where do we lose people, and does it differ by channel? (funnel)
 - **Method:** `rpt.v_funnel` has one row per customer with a 0/1 flag per stage (signup, KYC verified, funded, active). Each rate uses only the customers who had enough time to reach the stage: signups on or before 2026-08-31 for the funded rate, first deposits on or before 2026-07-02 for the active rate.
 - **Finding:** paid social loses most between verified and funded: only 52.4% of its verified customers fund, against 72% to 89% in the other channels. Affiliate loses at the KYC step: only 69.5% of its signups verify, against 80% to 92.5%. Referral is the best channel at every stage. Students (63.0%) and freelancers (67.2%) fund less often after verifying than salaried customers (80.4%), but paid social is lower than any segment. The time from signup to first deposit is about 8 days in every channel.
-- **Used in:** the funnel step of the Power BI report (planned).
+- **Used in:** page 2 (Funnel) of the Power BI report.
 
 ### Q2. Which channels earn back what we paid to win a customer, and how fast? (payback)
 - **Method:** `rpt.v_channel_scorecard` and `rpt.v_channel_curve`. CAC is (ad spend + 2.50 EUR per KYC decision) divided by funded customers. LTV is the average cumulative margin per customer at month 12. Payback is the first month where the average cumulative margin reaches CAC. Month k uses only customers who have had k full months.
@@ -41,7 +41,7 @@ All queries are in [`sql/04_business_questions.sql`](../sql/04_business_question
 ### Q3. Are we giving too much credit to some channel? (attribution)
 - **Method:** `rpt.v_touch_credit` credits each funded customer to the channels of the clicks before their first deposit, in three ways: first touch, last touch, and position-based (40% first, 40% last, 20% shared by the middle clicks). Each model is compared with the recorded channel. Each model adds up to 5,928 customers, and one customer has no click.
 - **Finding:** the recorded channel gives paid social too much credit and paid search too little. Paid social falls from 1,225 customers to 981 under position-based credit (-19.9%) and 897 under last touch (-26.8%). Paid search rises from 1,545 to 1,892 (+22.5%) and 2,137 (+38.3%). Affiliate (+0.4%), referral (-5.3%) and organic (-4.2%) barely move. Recalculated on position-based credit, paid social CAC rises from 65.59 to 81.87 and paid search CAC falls from 32.94 to 26.90, which makes paid search cheaper than affiliate (31.92). 80% of funded customers have one or two clicks before their first deposit.
-- **Used in:** the attribution step of the Power BI report (planned).
+- **Used in:** page 3 (Attribution and campaigns) of the Power BI report.
 
 ### Q4. Which campaigns waste money?
 - **Method:** `rpt.v_campaign_cac`. A campaign is wasteful when its CAC is at least twice the median campaign CAC of its own channel and its spend is at least 2,000 EUR. Campaigns are only compared inside their channel.
