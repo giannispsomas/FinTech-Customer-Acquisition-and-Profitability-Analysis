@@ -48,6 +48,7 @@ The report has five pages: Executive, Funnel, Attribution and campaigns, Credit 
 FinTech-Customer-Acquisition-and-Profitability-Analysis/
 ├── README.md                        Project overview (this file)
 ├── Case_Study.md                    The question, method, findings and recommendations
+├── Case_Study.pdf                   The same case study as a PDF
 ├── Executive_Summary.pdf            One-page summary for business readers
 ├── LICENSE                          MIT license
 ├── data/                            The 10 synthetic CSV files
