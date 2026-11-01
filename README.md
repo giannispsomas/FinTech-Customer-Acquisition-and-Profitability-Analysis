@@ -43,6 +43,15 @@ The report has six pages: Executive, Funnel, Attribution and campaigns, Credit r
 
 ![Credit risk page](power_bi/images/4_Credit_Risk.png)
 
+## Data Model and Metrics
+
+- **Data model:** no star schema. The project is about marketing analytics, so the operational tables stay as they are and ten reporting views in the `rpt` schema sit on top. Every metric is defined once in those views, and the exploratory analysis, the Excel model and the Power BI report all read from them. Details in [reporting_views.md](docs/reporting_views.md).
+- **Table grain:** each view states its grain, for example one row per funded customer (5,928), per funded customer and 30-day month (71,136), or per channel (5).
+- **Measures:** 56 DAX measures, among them CAC, LTV 12m, LTV to CAC, payback month, risk-adjusted LTV, default rate and verified-to-funded rate. Each is listed in [DAX_Measures.md](docs/DAX_Measures.md).
+- **Headline metric:** risk-adjusted LTV per customer, which is the 12-month margin after credit losses.
+- **Data layers:** `dbo` (raw, never changed), `clean` (cleaned copy) and `rpt` (reporting views). See [data_cleaning.md](docs/data_cleaning.md) and [data_profiling.md](docs/data_profiling.md).
+- **KPI scorecard:** six targets per channel (CAC, LTV to CAC, payback, risk-adjusted LTV, default rate, verified to funded), explained in [Report_Guide.md](docs/Report_Guide.md).
+
 ## Repository Structure
 
 ```
