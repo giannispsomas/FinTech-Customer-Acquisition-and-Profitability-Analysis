@@ -76,7 +76,7 @@ Each page has a takeaway title: a sentence with the main result, so the page can
 **How to read it**
 - Each rate is the share who reach the next step, not the share of all signups.
 - Verified to funded counts only customers who signed up at least 30 days before the extract, and funded to active only customers funded at least 90 days before it, so recent signups do not lower the rates.
-- Paid social is the only channel where the orange bar (verified to funded) falls far below the blue one. Affiliate loses earlier, at KYC (69.5% verified).
+- Paid social is the only channel where the green bar (verified to funded) falls far below the dark blue one (verified rate). Affiliate loses earlier, at KYC (69.5% verified).
 - By segment, students (63.0%) and freelancers (67.2%) fund least often after verifying.
 
 ---
